@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number System Converter</title>
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px;
+            color: white;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            bottom: 250px;            
+        }
+
+        .navbar .brand {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar .nav-links li {
+            margin: 0 15px;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #f8bac3;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .converter-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .converter label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .converter input, .converter select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .swap-button, .clear-button {
+            background-color: #28a745;
+            border: none;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 10px;
+            margin: 10px auto;
+            display: block;
+            width: 40px;
+            height: 40px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .clear-button {
+            background-color: #dc3545;
+            width: 50px;
+            height: 50px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">Scientific Calculator</div>
+        <ul class="nav-links">
+            <li><a href="cmain.html">Home</a></li>
+            <li><a href="Scientific-calculator.html">Scientific</a></li>
+            <li><a href="Program-calculator.html">Program</a></li>
+            <li><a href="Date-calculator.html">Date</a></li>
+            <li><a href="volume-measurement.html">Volume</a></li>
+        </ul>
+    </nav>
+    <div class="converter-container">
+        <h1>Number System Converter</h1>
+        <div class="converter">
+            <label for="inputNumber">Enter Number:</label>
+            <input type="text" id="inputNumber" placeholder="Enter a number">
+
+            <label for="inputBase">From:</label>
+            <select id="inputBase">
+                <option value="2">Binary</option>
+                <option value="8">Octal</option>
+                <option value="10">Decimal</option>
+                <option value="16">Hexadecimal</option>
+            </select>
+
+            <button class="swap-button" onclick="swapValues()">⇆</button>
+
+            <label for="outputBase">To:</label>
+            <select id="outputBase">
+                <option value="2">Binary</option>
+                <option value="8">Octal</option>
+                <option value="10">Decimal</option>
+                <option value="16">Hexadecimal</option>
+            </select>
+
+            <button onclick="convert()">Convert</button>
+            <button class="clear-button" onclick="clearFields()">Clear</button>
+
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function convert() {
+            const inputNumber = document.getElementById("inputNumber").value;
+            const inputBase = parseInt(document.getElementById("inputBase").value);
+            const outputBase = parseInt(document.getElementById("outputBase").value);
+            let result;
+
+            // Check if the input number is valid
+            if (inputNumber === '') {
+                result = "Please enter a number.";
+            } else {
+                // Convert the input number to decimal
+                const decimalValue = parseInt(inputNumber, inputBase);
+
+                // Convert the decimal value to the desired output base
+                result = decimalValue.toString(outputBase).toUpperCase();
+            }
+
+            document.getElementById("result").textContent = `Result: ${result}`;
+        }
+
+        function swapValues() {
+            const inputBase = document.getElementById("inputBase");
+            const outputBase = document.getElementById("outputBase");
+
+            // Swap the selected values between the two dropdowns
+            const tempValue = inputBase.value;
+            inputBase.value = outputBase.value;
+            outputBase.value = tempValue;
+        }
+
+        function clearFields() {
+            document.getElementById("inputNumber").value = '';
+            document.getElementById("inputBase").value = '10'; // Default to Decimal
+            document.getElementById("outputBase").value = '2'; // Default to Binary
+            document.getElementById("result").textContent = '';
+        }
+    </script>
+</body>
+</html>

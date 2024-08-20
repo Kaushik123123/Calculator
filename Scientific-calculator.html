@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px;
+            color: white;
+            position: sticky; /* Keeps the navbar at the top */
+            top: 0; /* Ensures it's at the top */
+            width: 100%;
+            z-index: 1000; /* Ensures the navbar is above other content */
+            height: auto; /* Adjust this if you need to set a specific height */
+        }
+
+        .navbar .brand {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar .nav-links li {
+            margin: 0 15px;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #f8bac3;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Ensures the navbar is on top */
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding-top: 80px; /* Adds space for the navbar */
+        }
+
+        .calculator {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 20px;
+            width: 320px;
+        }
+
+        .display input {
+            width: 100%;
+            height: 40px;
+            font-size: 24px;
+            text-align: right;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            outline: none;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .operator {
+            background-color: #ff8c00;
+            color: white;
+        }
+
+        .operator:hover {
+            background-color: #ff6000;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">Scientific Calculator</div>
+        <ul class="nav-links">
+            <li><a href="cmain.html">Home</a></li>
+            <li><a href="Scientific-calculator.html">Scientific</a></li>
+            <li><a href="Program-calculator.html">Program</a></li>
+            <li><a href="Date-calculator.html">Date</a></li>
+            <li><a href="volume-measurement.html">Volume</a></li>
+        </ul>
+    </nav>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="display" disabled>
+        </div>
+        <div class="buttons">
+            <!-- Number buttons -->
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn operator">/</button>
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn operator">*</button>
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn operator">-</button>
+            <button class="btn">0</button>
+            <button class="btn">.</button>
+            <button class="btn operator">+</button>
+            <button class="btn operator">=</button>
+            
+            <!-- Scientific buttons -->
+            <button class="btn">sin</button>
+            <button class="btn">cos</button>
+            <button class="btn">tan</button>
+            <button class="btn">sqrt</button>
+            <button class="btn">^</button>
+            <button class="btn">ln</button>
+            <button class="btn">log</button>
+            <button class="btn">pi</button>
+            <button class="btn">e</button>
+            <button class="btn">AC</button>
+        </div>
+    </div>
+    <script>
+        const display = document.getElementById('display');
+        const buttons = document.querySelectorAll('.btn');
+
+        // Function to convert degrees to radians
+        function toRadians(degrees) {
+            return degrees * (Math.PI / 180);
+        }
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (button.innerHTML === '=') {
+                    try {
+                        display.value = eval(display.value);
+                    } catch {
+                        display.value = 'Error';
+                    }
+                } else if (button.innerHTML === 'AC') {
+                    display.value = '';
+                } else if (button.innerHTML === 'sin') {
+                    display.value = Math.sin(toRadians(display.value));
+                } else if (button.innerHTML === 'cos') {
+                    display.value = Math.cos(toRadians(display.value));
+                } else if (button.innerHTML === 'tan') {
+                    display.value = Math.tan(toRadians(display.value));
+                } else if (button.innerHTML === 'sqrt') {
+                    display.value = Math.sqrt(display.value);
+                } else if (button.innerHTML === '^') {
+                    display.value += '**';
+                } else if (button.innerHTML === 'ln') {
+                    display.value = Math.log(display.value);
+                } else if (button.innerHTML === 'log') {
+                    display.value = Math.log10(display.value);
+                } else if (button.innerHTML === 'pi') {
+                    display.value += Math.PI;
+                } else if (button.innerHTML === 'e') {
+                    display.value += Math.E;
+                } else {
+                    display.value += button.innerHTML;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

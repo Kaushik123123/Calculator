@@ -1,0 +1,181 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-image: url("https://media.gettyimages.com/id/1620065544/vector/abstract-blurred-gradient-fluid-vector-background-design-wallpaper-template-with-dynamic.jpg?s=612x612&w=0&k=20&c=Js5k3EpF07m_xYltoEjLQ_znQT2D8OClVCq4mtP6xlI=");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+
+.dashboard {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #292c35;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar a {
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #575757;
+}
+
+.sidebar h2 {
+    color: white;
+}
+
+a.help {
+    position: fixed;
+    top: 90%;
+}
+
+.content {
+    margin-left: 0;
+    padding: 16px;
+    transition: margin-left 0.3s;
+    flex-grow: 1;
+}
+
+.toggle-btn {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #FCD9B8;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+@keyframes toggle-btn-animation {
+    0% {font-size: 24px;}
+    50%{font-size: 30px;}
+    100%{font-size: 24px;}
+}
+
+.toggle-btn:hover {
+    animation: toggle-btn-animation 1s normal;
+}
+
+.Head1 {
+    color: aliceblue;
+}
+
+.container {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    border: 5px whitesmoke;
+    left: 80px;
+    position: relative;
+    z-index: 1;
+    padding: 7%;
+    margin: 1%;
+}
+
+.container img {
+    height: 350px;
+    width: 350px;
+    position: relative;
+    bottom: 130px;
+    right: 70px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.container img:hover {
+    transform: scale(1.04); /* Adjust the scale factor as needed */
+}
+
+.container h2 {
+    position: relative;
+    bottom: 60%;
+    left: 18%;
+    color: aliceblue;
+}
+
+.sidebar {
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+hr {
+    width: 240px;
+}
+
+.bright-letter {
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+#C:hover, #A:hover, #L1:hover, #C2:hover, #U:hover, #L2:hover, #A2:hover, #T:hover, #O:hover, #R:hover {
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+#C:hover {
+    color: violet;
+    text-shadow: 2px 2px 10px violet, 0 0 20px violet;
+}
+
+#A:hover {
+    color: indigo;
+    text-shadow: 2px 2px 10px indigo, 0 0 20px indigo;
+}
+
+#L1:hover {
+    color: blue;
+    text-shadow: 2px 2px 10px blue, 0 0 20px blue;
+}
+
+#C2:hover {
+    color: green;
+    text-shadow: 2px 2px 10px green, 0 0 20px green;
+}
+
+#U:hover {
+    color: yellow;
+    text-shadow: 2px 2px 10px rgba(255, 255, 0, 0.8), 0 0 20px rgba(255, 255, 0, 1);
+}
+
+#L2:hover {
+    color: orange;
+    text-shadow: 2px 2px 10px orange, 0 0 20px orange;
+}
+
+#A2:hover {
+    color: red;
+    text-shadow: 2px 2px 10px red, 0 0 20px red;
+}
+
+#T:hover {
+    color: rgb(0, 145, 255);
+    text-shadow: 2px 2px 10px rgba(0, 145, 255, 0.8), 0 0 20px rgba(0, 145, 255, 1);
+}
+
+#O:hover {
+    color: rgb(32, 100, 0);
+    text-shadow: 2px 2px 10px rgba(32, 100, 0, 0.8), 0 0 20px rgba(32, 100, 0, 1);
+}
+
+#R:hover {
+    color: rgb(255, 150, 246);
+    text-shadow: 2px 2px 10px rgba(255, 150, 246, 0.8), 0 0 20px rgba(255, 150, 246, 1);
+}

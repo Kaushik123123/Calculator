@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volume Measurement Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="number"], select {
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Volume Calculator</h1>
+        
+        <label for="shape">Select Shape:</label>
+        <select id="shape" onchange="updateInputs()">
+            <option value="cube">Cube</option>
+            <option value="cuboid">Cuboid</option>
+            <option value="cylinder">Cylinder</option>
+            <option value="sphere">Sphere</option>
+        </select>
+
+        <div id="inputs">
+            <!-- Dynamic Inputs will be placed here based on the selected shape -->
+        </div>
+
+        <button onclick="calculateVolume()">Calculate Volume</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function updateInputs() {
+            const shape = document.getElementById('shape').value;
+            const inputsDiv = document.getElementById('inputs');
+            inputsDiv.innerHTML = '';
+
+            if (shape === 'cube') {
+                inputsDiv.innerHTML = `
+                    <label for="side">Side (a):</label>
+                    <input type="number" id="side" placeholder="Enter side length">
+                `;
+            } else if (shape === 'cuboid') {
+                inputsDiv.innerHTML = `
+                    <label for="length">Length (l):</label>
+                    <input type="number" id="length" placeholder="Enter length">
+                    <label for="width">Width (w):</label>
+                    <input type="number" id="width" placeholder="Enter width">
+                    <label for="height">Height (h):</label>
+                    <input type="number" id="height" placeholder="Enter height">
+                `;
+            } else if (shape === 'cylinder') {
+                inputsDiv.innerHTML = `
+                    <label for="radius">Radius (r):</label>
+                    <input type="number" id="radius" placeholder="Enter radius">
+                    <label for="height">Height (h):</label>
+                    <input type="number" id="height" placeholder="Enter height">
+                `;
+            } else if (shape === 'sphere') {
+                inputsDiv.innerHTML = `
+                    <label for="radius">Radius (r):</label>
+                    <input type="number" id="radius" placeholder="Enter radius">
+                `;
+            }
+        }
+
+        function calculateVolume() {
+            const shape = document.getElementById('shape').value;
+            let volume = 0;
+
+            if (shape === 'cube') {
+                const side = parseFloat(document.getElementById('side').value);
+                volume = Math.pow(side, 3);
+            } else if (shape === 'cuboid') {
+                const length = parseFloat(document.getElementById('length').value);
+                const width = parseFloat(document.getElementById('width').value);
+                const height = parseFloat(document.getElementById('height').value);
+                volume = length * width * height;
+            } else if (shape === 'cylinder') {
+                const radius = parseFloat(document.getElementById('radius').value);
+                const height = parseFloat(document.getElementById('height').value);
+                volume = Math.PI * Math.pow(radius, 2) * height;
+            } else if (shape === 'sphere') {
+                const radius = parseFloat(document.getElementById('radius').value);
+                volume = (4/3) * Math.PI * Math.pow(radius, 3);
+            }
+
+            document.getElementById('result').textContent = `Volume: ${volume.toFixed(2)} cubic units`;
+        }
+
+        // Initialize inputs for the default shape (cube)
+        updateInputs();
+    </script>
+</body>
+</html>
